@@ -10,12 +10,19 @@ from sklearn.model_selection import train_test_split
 
 root_path = './'
 stat_path = osp.join(root_path, 'statistics')
-setup_file = osp.join(stat_path, 'setup.txt')
-camera_file = osp.join(stat_path, 'camera.txt')
-performer_file = osp.join(stat_path, 'performer.txt')
-replication_file = osp.join(stat_path, 'replication.txt')
-label_file = osp.join(stat_path, 'label.txt')
-skes_name_file = osp.join(stat_path, 'skes_available_name.txt')
+# setup_file = osp.join(stat_path, 'setup.txt')
+# camera_file = osp.join(stat_path, 'camera.txt')
+# performer_file = osp.join(stat_path, 'performer.txt')
+# replication_file = osp.join(stat_path, 'replication.txt')
+# label_file = osp.join(stat_path, 'label.txt')
+# skes_name_file = osp.join(stat_path, 'skes_available_name.txt')
+
+setup_file = osp.join(stat_path, 'setup_copy.txt')
+camera_file = osp.join(stat_path, 'camera_copy.txt')
+performer_file = osp.join(stat_path, 'performer_copy.txt')
+replication_file = osp.join(stat_path, 'replication_copy.txt')
+label_file = osp.join(stat_path, 'label_copy.txt')
+skes_name_file = osp.join(stat_path, 'skes_available_name_copy.txt')
 
 denoised_path = osp.join(root_path, 'denoised_data')
 raw_skes_joints_pkl = osp.join(denoised_path, 'raw_denoised_joints.pkl')
@@ -203,12 +210,12 @@ def get_indices(performer, setup, evaluation='CSub'):
         # Get indices of test data
         for idx in test_ids:
             temp = np.where(performer == idx)[0]  # 0-based index
-            test_indices = np.hstack((test_indices, temp)).astype(np.int)
+            test_indices = np.hstack((test_indices, temp)).astype(np.int16)
 
         # Get indices of training data
         for train_id in train_ids:
             temp = np.where(performer == train_id)[0]  # 0-based index
-            train_indices = np.hstack((train_indices, temp)).astype(np.int)
+            train_indices = np.hstack((train_indices, temp)).astype(np.int16)
     else:  # Cross Setup (Setup IDs)
         train_ids = [i for i in range(1, 33) if i % 2 == 0]  # Even setup
         test_ids = [i for i in range(1, 33) if i % 2 == 1]  # Odd setup
@@ -216,22 +223,22 @@ def get_indices(performer, setup, evaluation='CSub'):
         # Get indices of test data
         for test_id in test_ids:
             temp = np.where(setup == test_id)[0]  # 0-based index
-            test_indices = np.hstack((test_indices, temp)).astype(np.int)
+            test_indices = np.hstack((test_indices, temp)).astype(np.int16)
 
         # Get indices of training data
         for train_id in train_ids:
             temp = np.where(setup == train_id)[0]  # 0-based index
-            train_indices = np.hstack((train_indices, temp)).astype(np.int)
+            train_indices = np.hstack((train_indices, temp)).astype(np.int16)
 
     return train_indices, test_indices
 
 
 if __name__ == '__main__':
-    setup = np.loadtxt(setup_file, dtype=np.int)  # camera id: 1~32
-    performer = np.loadtxt(performer_file, dtype=np.int)  # subject id: 1~106
-    label = np.loadtxt(label_file, dtype=np.int) - 1  # action label: 0~119
+    setup = np.loadtxt(setup_file, dtype=np.int16)  # camera id: 1~32
+    performer = np.loadtxt(performer_file, dtype=np.int16)  # subject id: 1~106
+    label = np.loadtxt(label_file, dtype=np.int16) - 1  # action label: 0~119
 
-    frames_cnt = np.loadtxt(frames_file, dtype=np.int)  # frames_cnt
+    frames_cnt = np.loadtxt(frames_file, dtype=np.int16)  # frames_cnt
     skes_name = np.loadtxt(skes_name_file, dtype=np.string_)
 
     with open(raw_skes_joints_pkl, 'rb') as fr:
