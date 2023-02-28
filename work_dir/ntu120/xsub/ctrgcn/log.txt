@@ -1,0 +1,7 @@
+[ Mon Feb 27 17:13:53 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:23:11 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:23:35 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:23:58 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:24:24 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:24:56 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 17:25:24 2023 ] using warm up, epoch: 5

@@ -3,6 +3,7 @@
 import os
 import os.path as osp
 import numpy as np
+from numpy import load
 import pickle
 import logging
 import h5py
@@ -49,6 +50,7 @@ def remove_nan_frames(ske_name, ske_joints, nan_logger):
     return ske_joints[valid_frames]
 
 def seq_translation(skes_joints):
+    # print("here")
     for idx, ske_joints in enumerate(skes_joints):
         num_frames = ske_joints.shape[0]
         num_bodies = 1 if ske_joints.shape[1] == 75 else 2
@@ -79,7 +81,7 @@ def seq_translation(skes_joints):
             ske_joints[missing_frames_2, 75:] = np.zeros((cnt2, 75), dtype=np.float32)
 
         skes_joints[idx] = ske_joints  # Update
-
+    # print("length",len(skes_joints))
     return skes_joints
 
 
@@ -150,9 +152,11 @@ def split_train_val(train_indices, method='sklearn', ratio=0.05):
 
     """
     if method == 'sklearn':
-        return train_test_split(train_indices, test_size=ratio, random_state=10000)
+        # return train_test_split(train_indices, test_size=ratio, random_state=10000)
+        return train_test_split(train_indices, test_size=ratio, random_state=100)
     else:
-        np.random.seed(10000)
+        #np.random.seed(10000)
+        np.random.seed(100)
         np.random.shuffle(train_indices)
         val_num_skes = int(np.ceil(0.05 * len(train_indices)))
         val_indices = train_indices[:val_num_skes]
@@ -172,6 +176,7 @@ def split_dataset(skes_joints, label, performer, setup, evaluation, save_path):
 
     train_x = skes_joints[train_indices]
     train_y = one_hot_vector(train_labels)
+    
     test_x = skes_joints[test_indices]
     test_y = one_hot_vector(test_labels)
 
@@ -201,11 +206,13 @@ def get_indices(performer, setup, evaluation='CSub'):
     train_indices = np.empty(0)
 
     if evaluation == 'CSub':  # Cross Subject (Subject IDs)
+        # print("in csub")
         train_ids = [1, 2, 4, 5, 8, 9, 13, 14, 15, 16, 17, 18, 19, 25, 27, 28,
                      31, 34, 35, 38, 45, 46, 47, 49, 50, 52, 53, 54, 55, 56, 57,
                      58, 59, 70, 74, 78, 80, 81, 82, 83, 84, 85, 86, 89, 91, 92,
                      93, 94, 95, 97, 98, 100, 103]
         test_ids = [i for i in range(1, 107) if i not in train_ids]
+        # print(performer)
 
         # Get indices of test data
         for idx in test_ids:
@@ -230,6 +237,9 @@ def get_indices(performer, setup, evaluation='CSub'):
             temp = np.where(setup == train_id)[0]  # 0-based index
             train_indices = np.hstack((train_indices, temp)).astype(np.int16)
 
+    # print("train_indices", train_indices)
+    # print("test_indices", test_indices)
+
     return train_indices, test_indices
 
 
@@ -248,6 +258,14 @@ if __name__ == '__main__':
 
     skes_joints = align_frames(skes_joints, frames_cnt)  # aligned to the same frame length
 
-    evaluations = ['CSet', 'CSub']
+    evaluations = ['CSub']
     for evaluation in evaluations:
         split_dataset(skes_joints, label, performer, setup, evaluation, save_path)
+    
+    #test
+    data = load('NTU120_CSub.npz')
+    lst = data.files
+    # for item in lst:
+    #     print(item)
+    #     print(len(data[item]))
+    #     print(data[item])
