@@ -3,3 +3,10 @@
 [ Sat Feb 25 17:44:20 2023 ] using warm up, epoch: 5
 [ Sat Feb 25 17:45:30 2023 ] using warm up, epoch: 5
 [ Sat Feb 25 18:04:44 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 15:54:15 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:00:30 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:08:29 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:08:54 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:18:43 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:19:50 2023 ] using warm up, epoch: 5
+[ Mon Feb 27 16:36:11 2023 ] using warm up, epoch: 5
