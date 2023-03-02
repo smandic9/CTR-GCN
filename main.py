@@ -25,7 +25,8 @@ import yaml
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
 
-from torchlight import DictAction
+import torchlight
+from torchlight.util import DictAction
 
 
 import resource

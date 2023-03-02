@@ -25,3 +25,7 @@
 [ Mon Feb 27 16:58:00 2023 ] using warm up, epoch: 5
 [ Mon Feb 27 17:01:15 2023 ] using warm up, epoch: 5
 [ Mon Feb 27 18:53:29 2023 ] using warm up, epoch: 5
+[ Wed Mar  1 14:08:52 2023 ] using warm up, epoch: 5
+[ Wed Mar  1 14:09:21 2023 ] using warm up, epoch: 5
+[ Wed Mar  1 14:24:21 2023 ] using warm up, epoch: 5
+[ Wed Mar  1 15:41:29 2023 ] using warm up, epoch: 5
