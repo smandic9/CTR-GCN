@@ -1,8 +1,8 @@
-# command line: main.py --config config/nturgbd120-cross-subject/default.yaml --work-dir work_dir/ntu120/csub/ctrgcn --device 0
+# command line: main.py --config work_dir/ntu120/csub/ctrgcn/config.yaml --work-dir work_dir/ntu120/csub/ctrgcn --phase test --save-score True --weights work_dir/ntu120/csub/ctrgcn/runs-31-31.pt --device 0
 
 base_lr: 0.1
 batch_size: 64
-config: config/nturgbd120-cross-subject/default.yaml
+config: work_dir/ntu120/csub/ctrgcn/config.yaml
 device:
 - 0
 eval_interval: 5
@@ -23,11 +23,11 @@ nesterov: true
 num_epoch: 65
 num_worker: 32
 optimizer: SGD
-phase: train
+phase: test
 print_log: true
 save_epoch: 30
 save_interval: 1
-save_score: false
+save_score: true
 seed: 1
 show_topk:
 - 1
@@ -63,5 +63,5 @@ train_feeder_args:
   window_size: 64
 warm_up_epoch: 5
 weight_decay: 0.0004
-weights: null
+weights: work_dir/ntu120/csub/ctrgcn/runs-31-31.pt
 work_dir: work_dir/ntu120/csub/ctrgcn
