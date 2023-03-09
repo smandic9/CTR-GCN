@@ -1,4 +1,4 @@
-# command line: main.py --config work_dir/ntu120/csub/ctrgcn/config.yaml --work-dir work_dir/ntu120/csub/ctrgcn --phase test --save-score True --weights work_dir/ntu120/csub/ctrgcn/runs-62-61008.pt --device 0
+# command line: main.py --config work_dir/ntu120/csub/ctrgcn/config.yaml --work-dir work_dir/ntu120/csub/ctrgcn --phase test --save-score True --weights work_dir/ntu120/csub/ctrgcn/runs-31-31.pt --device 0
 
 base_lr: 0.1
 batch_size: 64
@@ -63,5 +63,5 @@ train_feeder_args:
   window_size: 64
 warm_up_epoch: 5
 weight_decay: 0.0004
-weights: work_dir/ntu120/csub/ctrgcn/runs-62-61008.pt
+weights: work_dir/ntu120/csub/ctrgcn/runs-31-31.pt
 work_dir: work_dir/ntu120/csub/ctrgcn
