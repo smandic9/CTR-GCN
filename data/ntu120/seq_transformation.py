@@ -153,10 +153,10 @@ def split_train_val(train_indices, method='sklearn', ratio=0.05):
     """
     if method == 'sklearn':
         # return train_test_split(train_indices, test_size=ratio, random_state=10000)
-        return train_test_split(train_indices, test_size=ratio, random_state=100)
+        return train_test_split(train_indices, test_size=ratio, random_state=1000)
     else:
         #np.random.seed(10000)
-        np.random.seed(100)
+        np.random.seed(1000)
         np.random.shuffle(train_indices)
         val_num_skes = int(np.ceil(0.05 * len(train_indices)))
         val_indices = train_indices[:val_num_skes]
@@ -263,8 +263,8 @@ if __name__ == '__main__':
         split_dataset(skes_joints, label, performer, setup, evaluation, save_path)
     
     #test
-    data = load('NTU120_CSub.npz')
-    lst = data.files
+    # data = load('NTU120_CSub.npz')
+    # lst = data.files
     # for item in lst:
     #     print(item)
     #     print(len(data[item]))
